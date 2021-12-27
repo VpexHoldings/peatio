@@ -135,7 +135,7 @@ class Member < ApplicationRecord
   end
 
   def is_hold_enough_coin?(coin_member)
-    member_avaiable_usdt.to_f >= coin_member
+    member_avaiable_usdt >= coin_member
   end
 
   private
