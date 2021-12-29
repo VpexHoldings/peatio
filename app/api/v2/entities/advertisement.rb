@@ -121,6 +121,21 @@ module API
         )
 
         expose(
+          :visible,
+          documentation: {
+            type: Integer,
+            desc: 'visible of ads'
+          }
+        )
+
+        expose(
+          :created_at,
+          documentation: {
+            desc: 'visible of ads'
+          }
+        )
+
+        expose(
           :total_amount,
           documentation: {
             desc: 'total amount'
@@ -140,6 +155,12 @@ module API
             desc: 'member_coin_number advertisement'
           }
         )
+
+        private
+
+        def visible
+          ::Advertisement::visibles[object["visible"]]
+        end
 
       end
     end

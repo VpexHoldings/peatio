@@ -37,6 +37,14 @@ module API
         )
 
         expose(
+          :price_percent,
+          documentation: {
+            type: BigDecimal,
+            desc: "price_percent of p2p order."
+          }
+        )
+
+        expose(
           :amount,
           documentation: {
             type: BigDecimal,
@@ -125,12 +133,19 @@ module API
             desc: "claim reason."
           }
         )
-        # expose(
-        #   :images,
-        #   documentation: {
-        #     desc: 'images.'
-        #   }
-        # )
+
+
+        expose(
+          :attachments,
+          using: API::V2::P2p::Entities::Attachment,
+          documentation: {
+            type: 'API::V2::P2p::Entities::Attachment',
+            is_array: true,
+            uniq: true,
+            desc: 'images at of Claim',
+            type: String
+          }
+        )
 
       end
     end

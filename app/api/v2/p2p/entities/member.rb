@@ -5,6 +5,8 @@ module API
     module P2p
       module Entities
         class Member < API::V2::Entities::Base
+          expose(:id)
+
           expose(
             :username,
             documentation: {
@@ -20,6 +22,8 @@ module API
               type: String
             }
           )
+
+          expose(:uid)
 
           expose(
             :accounts,

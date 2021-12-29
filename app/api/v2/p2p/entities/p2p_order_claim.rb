@@ -8,39 +8,77 @@ module API
           expose(
             :id,
             documentation: {
-              desc: 'id of P2pOrder',
-              type: String
-            }
-          )
-
-          expose(
-            :claim_title,
-            documentation: {
-              desc: 'claim title of P2pOrder',
-              type: String
-            }
-          )
-
-          expose(
-            :claim_description,
-            documentation: {
-              desc: 'claim description of P2pOrder',
-              type: String
-            }
-          )
-
-          expose(
-            :claim_status,
-            documentation: {
-              desc: 'claim status of P2pOrder',
+              desc: 'id of P2pOrderClaim',
               type: Integer
+            }
+          )
+
+          expose(
+            :p2p_order_id,
+            documentation: {
+              desc: 'p2p_order_id of P2pOrderClaim',
+              type: Integer
+            }
+          )
+
+          expose(
+            :status,
+            documentation: {
+              desc: 'status of P2pOrderClaim',
+              type: Integer
+            }
+          )
+
+          expose(
+            :member_id,
+            documentation: {
+              desc: 'member_id of P2pOrderClaim',
+              type: Integer
+            }
+          )
+
+          expose(
+            :reason,
+            documentation: {
+              desc: 'reason of P2pOrderClaim',
+              type: String
+            }
+          )
+
+          expose(
+            :description,
+            documentation: {
+              desc: 'description of P2pOrderClaim',
+              type: String
             }
           )
 
           expose(
             :order_number,
             documentation: {
-              desc: 'order_number of P2pOrder',
+              desc: 'order_number of P2pOrderClaim',
+              type: String
+            }
+          )
+
+          expose(
+            :claim_type,
+            documentation: {
+              desc: 'claim_type of P2pOrderClaim',
+              type: String
+            }
+          )
+
+          expose(:reason_claim)
+          expose(:note)
+          expose(
+            :member,
+            using: API::V2::P2p::Entities::Member,
+            documentation: {
+              type: 'API::V2::P2p::Entities::Member',
+              is_array: true,
+              uniq: true,
+              desc: 'member if claim',
               type: String
             }
           )
@@ -52,7 +90,7 @@ module API
               type: 'API::V2::P2p::Entities::Attachment',
               is_array: true,
               uniq: true,
-              desc: 'images at of P2pOrder',
+              desc: 'images at of Claim',
               type: String
             }
           )
@@ -60,10 +98,16 @@ module API
           expose(
             :created_at,
             documentation: {
-              desc: 'created at of P2pOrder',
+              desc: 'created at of P2pOrderClaim',
               type: String
             }
           )
+
+          private
+
+          def claim_type
+            ::P2pOrderClaim::claim_types[object["claim_type"]]
+          end
         end
       end
     end

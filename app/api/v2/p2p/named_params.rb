@@ -106,27 +106,27 @@ module API
         end
 
         params :p2p_claim do
-          optional :claim_status,
-                   type: Integer,
-                   desc: -> { V2::Entities::P2pOrder.documentation[:claim_status] }
-
-          requires :claim_title,
+          optional :reason,
                    type: String,
-                   desc: -> { V2::Entities::P2pOrder.documentation[:claim_title] }
+                   desc: -> { V2::Entities::P2pOrder.documentation[:reason] }
 
-          requires :claim_description,
+          optional :description,
                    type: String,
-                   desc: -> { V2::Entities::P2pOrder.documentation[:claim_description] }
-
-          optional :images,
-                   desc: -> { V2::Entities::P2pOrder.documentation[:images] }
+                   desc: -> { V2::Entities::P2pOrder.documentation[:reason] }
         end
 
-        params :p2p_list_claim do
+        params :p2p_claim_update do
+          optional :status,
+                   type: String,
+                   desc: -> { V2::Entities::P2pOrder.documentation[:status] }
 
-        end
+          optional :description,
+                   type: String,
+                   desc: -> { V2::Entities::P2pOrder.documentation[:description] }
 
-        params :p2p_show_claim do
+          optional :reason,
+                   type: String,
+                   desc: -> { V2::Entities::P2pOrder.documentation[:reason] }
 
         end
 

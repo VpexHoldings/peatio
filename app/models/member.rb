@@ -134,7 +134,8 @@ class Member < ApplicationRecord
     (Time.now.to_date - created_at.to_date).to_i > time_date
   end
 
-  def is_hold_enough_coin?(coin_member)
+  def is_hold_enough_coin?(ads)
+    coin_member = ads.member_coin_number.to_i
     member_avaiable_usdt.to_f >= coin_member
   end
 
@@ -230,7 +231,7 @@ class Member < ApplicationRecord
   end
 
   def member_avaiable_usdt
-    accounts.where(currency_id: "usdt").first.try(:balance)
+    accounts.where(currency_id: "usdt", type: "spot").first.try(:balance).to_f
   end
 end
 

@@ -28,6 +28,16 @@ module API
                  default: 'id',
                  desc: 'Name of the field, which result will be ordered by.'
       end
+
+      params :p2p_orders do
+        optional :status
+        optional :order_number
+        optional :p2p_orders_type
+      end
+
+      params :claim_edit do
+        optional :claim_status
+      end
     end
   end
 end
